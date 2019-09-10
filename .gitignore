@@ -10,3 +10,6 @@
 *.jpeg
 *.jpg
 *.txt 
+*.json
+*.csv
+

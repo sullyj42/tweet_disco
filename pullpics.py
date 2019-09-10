@@ -1,6 +1,9 @@
 #!/usr/bin/env python3
 
 import twitter
+# import csv      # Format things nicely
+import re         # Clean up tweets (remove "RT", @(...), etc)
+
 
 fid = open('twitter_consumer.token', 'r'); 
 consumer_key = fid.readline(); 
@@ -23,21 +26,31 @@ print('Consumer Secret:     ' + consumer_secret)
 print('Access Token:        ' + access_token)
 print('Access Token Secret: ' + access_token_secret)
 print('')
-# api = twitter.Api(consumer_key        = consumer_key,       \
-#                   consumer_secret     = consumer_secret,    \
-#                   access_token_key    = access_token,       \
-#                   access_token_secret = access_token_secret); 
+api = twitter.Api(consumer_key        = consumer_key,       \
+                  consumer_secret     = consumer_secret,    \
+                  access_token_key    = access_token,       \
+                  access_token_secret = access_token_secret); 
 
-api = twitter.Api(consumer_key        = consumer_key, consumer_secret     = consumer_secret, access_token_key    = access_token,  access_token_secret = access_token_secret); 
+# api = twitter.Api(consumer_key        = consumer_key, consumer_secret     = consumer_secret, access_token_key    = access_token,  access_token_secret = access_token_secret); 
 print('')
 print(api.VerifyCredentials())
 print('')
 
-# usertoanalyze = 'Brabbott42';
+usertoanalyze = 'Brabbott42';
 
-# t = api.GetUserTimeline(screen_name=usertoanalyze, count=10)
+tweets = api.GetUserTimeline(screen_name = usertoanalyze, count     = 200,   \
+                             include_rts = False,         since_id  = '',   \
+                             max_id      = '',            trim_user = True, \
+                             exclude_replies = True \
+                             )
 
-# tweets = [i.AsDict() for i in t]
 
-# for t in tweets:
-#     print(t['id'], t['text'])
+
+for s in tweets:
+    print(s.text)
+    print('')
+    print('')
+
+#w = csv.writer(open("output_" + usertoanalyze + '.csv', "w"))
+#for key, val in t.items():
+#    w.writerow([key, val])
