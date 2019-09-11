@@ -20,6 +20,11 @@ Perhaps make a make file, but for now...
 ## Google Vision
 
 ## Google NLP
+>> pip install --upgrade google-cloud-language
+>> pip install --upgrade google-api-python-client
+>> pip install oauth2client
+
+
 
 ## API Storage
 
