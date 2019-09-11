@@ -111,5 +111,10 @@ document = types.Document(
 # Detects the sentiment of the text
 sentiment = client.analyze_sentiment(document=document).document_sentiment
 
-print('Text: {}'.format(text))
+# print('Text: {}'.format(text))
 print('Sentiment: {}, {}'.format(sentiment.score, sentiment.magnitude))
+
+content = client.analyze_content(document=document).document_sentiment
+
+# print('Text: {}'.format(text))
+print('content: {}, {}'.format(content.score, content.magnitude))
