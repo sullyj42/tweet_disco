@@ -4,10 +4,6 @@ import twitter
 # import csv      # Format things nicely
 import re         # Clean up tweets (remove "RT", @(...), etc)
 
-# Imports the Google Cloud client library
-from google.cloud import language
-from google.cloud.language import enums
-from google.cloud.language import types
 
 import sys
 import subprocess
@@ -21,8 +17,24 @@ import subprocess
 #print(addGoogs)
 #print('')
 #subprocess.run([addGoogs])
+
+# Imports the Google Cloud client library
+from google.cloud import language
+from google.cloud.language import enums
+from google.cloud.language import types
+
 from oauth2client.client import GoogleCredentials
 from googleapiclient.discovery import build
+
+# For google NLP
+import argparse
+import io
+import json
+import os
+
+from google.cloud import language
+import numpy
+import six
 
 from time import sleep # Debugging
 
@@ -61,7 +73,7 @@ api = twitter.Api(consumer_key        = consumer_key,        \
 # print(api.VerifyCredentials())
 # print('')
 
-usertoanalyze = 'Brabbott42';
+usertoanalyze = 'realdonaldtrump';
 
 
 '''
@@ -98,8 +110,8 @@ fid.close();
 client = language.LanguageServiceClient()
 
 # The text to analyze
-
-with open('tweets_' + usertoanalyze + '.txt', 'r') as file:
+docName = 'tweets_' + usertoanalyze + '.txt'
+with open(docName, 'r') as file:
     data = file.read().replace('\n', '')
 # print(data)
 #text = u('Some text goes here') # u converts a string to unicode 
@@ -109,12 +121,73 @@ document = types.Document(
     type=enums.Document.Type.PLAIN_TEXT)
 
 # Detects the sentiment of the text
-sentiment = client.analyze_sentiment(document=document).document_sentiment
+# sentiment = client.analyze_sentiment(document=document).document_sentiment
 
 # print('Text: {}'.format(text))
-print('Sentiment: {}, {}'.format(sentiment.score, sentiment.magnitude))
+# print('Sentiment: {}, {}'.format(sentiment.score, sentiment.magnitude))
+def classify(text, verbose=True):
+    """Classify the input text into categories. """
 
-content = client.classify_text(document=document).document_sentiment
+    language_client = language.LanguageServiceClient()
 
-# print('Text: {}'.format(text))
-print('content: {}, {}'.format(content.score, content.magnitude))
+    document = language.types.Document(
+        content=text,
+        type=language.enums.Document.Type.PLAIN_TEXT)
+    response = language_client.classify_text(document)
+    categories = response.categories
+
+    result = {}
+
+    for category in categories:
+        # Turn the categories into a dictionary of the form:
+        # {category.name: category.confidence}, so that they can
+        # be treated as a sparse vector.
+        result[category.name] = category.confidence
+
+    if verbose:
+        print(text)
+        for category in categories:
+            print(u'=' * 20)
+            print(u'{:<16}: {}'.format('category', category.name))
+            print(u'{:<16}: {}'.format('confidence', category.confidence))
+
+    return result
+
+def index(path, index_file):
+    """Classify each text file in a directory and write
+    the results to the index_file.
+    """
+
+    result = {}
+    for filename in os.listdir(path):
+        print('')
+        print(filename)
+        print('')
+        file_path = os.path.join(path, filename)
+
+        if not os.path.isfile(file_path):
+            print('\nThis should error?\n')
+            continue
+
+        try:
+            with io.open(file_path, 'r') as f:
+                text = f.read()
+
+                categories = classify(text, verbose=True)
+                print(categories)
+                print('')
+                result = categories
+        except Exception:
+            print('Failed to process {}'.format(file_path))
+
+    with io.open(index_file, 'w', encoding='utf-8') as f:
+        f.write(json.dumps(result, ensure_ascii=True))
+
+    print('Texts indexed in file: {}'.format(index_file))
+    return result
+
+infile  = os.path.join(os.getcwd(), docName)
+outfile = os.path.join(os.getcwd(), 'output', 'results_' + docName)
+os.rename(infile, outfile)
+
+index(os.path.join(os.getcwd(), 'output'), os.path.join(os.getcwd(), 'output_nlp', 'output.json'))
