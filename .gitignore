@@ -9,7 +9,7 @@
 *.png
 *.jpeg
 *.jpg
-*.txt 
+# *.txt 
 *.json
 *.csv
 
