@@ -15,7 +15,7 @@ def language_analysis(file_name):
       type=enums.Document.Type.PLAIN_TEXT)
 
   #print(document)
-
+  client = language.LanguageServiceClient()
   # Detects the sentiment of the text
   sentiment = client.analyze_sentiment(document=document).document_sentiment
 
