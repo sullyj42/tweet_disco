@@ -12,4 +12,4 @@
 # *.txt 
 *.json
 *.csv
-
+*.pyc
