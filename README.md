@@ -2,7 +2,11 @@
 
 # Jeremiah Sullivan, Jingyi Li. EC601 Boston University, September 2019. 
 ## Use Cases
-Twitter accounts should present an inherently non-stationary signal. Observing changes in a particular user over time could provide insight to that users behavior over time. Perhaps this could be used to predict future behavior. 
+Twitter accounts should present an inherently non-stationary signal for a single user should present an inherently non-stationary signal. Over the life of an account (generally several years), users likely experience major life changes. These changes may exhibit themselves in the twitter feed. Observing changes in a particular user over time could provide insight to that users behavior over time. Perhaps this could be used to predict future behavior. 
+
+This utility could be useful for a salesman dealing with a specific person (ie as a used car salesman I am interested if the person is becoming more stingy or more expensive). 
+
+This utility could be useful for ... 
 
 ## Jeremiah Sullivan. EC601 Boston University, September 2019. 
 
