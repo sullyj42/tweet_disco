@@ -1,5 +1,8 @@
 # Tweet Disco Guide
 
+## Use Cases
+Twitter accounts should present an inherently non-stationary signal. Observing changes in a particular user over time could provide insight to that users behavior over time. Perhaps this could be used to predict future behavior. 
+
 ## Jeremiah Sullivan. EC601 Boston University, September 2019. 
 
 This repository contains the code necessary for a simple twitter relationship query using the following libraries
