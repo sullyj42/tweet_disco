@@ -1,7 +1,15 @@
 # Tweet Disco Guide
 
-## Jeremiah Sullivan. EC601 Boston University, September 2019. 
+## Jeremiah Sullivan, Jingyi Li. EC601 Boston University, September 2019. 
 
+## User stories
+Identify if the language is positive or negative
+In:  Comments from BU Twitter account // #boston… 
+Out: Overall sentiment from the past month
+
+MVP: A program that can accept an account/hashtag/… and (for a given time / something) output the overall sentiment (happy or sad)
+
+## Introduction
 This repository contains the code necessary for a simple twitter relationship query using the following libraries
 > python-twitter
 
