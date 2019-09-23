@@ -13,6 +13,7 @@ from   os      import makedirs, remove
 # Debug
 from time import sleep
 
+# Alternately, use tweepy
 class tweetImport():
     def __init__(self): 
         self.consumer_key        = '/Users/JP-Macbook/Documents/ec601/miniproject01/tweet_disco/twitter_consumer.token'
@@ -51,9 +52,12 @@ class tweetImport():
 
         for ids in since_id:
             print('The id being sent is: ' + str(ids))
+            if ids == 0:
+                ids = ''
             # Throw a try/catch here in case we give an invalid since-id
             api    = self.makeTwitterApi();
             tweets = self.analyzeUser(api, ids); 
+            api    = None
             self.writeTweetData(tweets); 
             sleep(2)
 
@@ -76,19 +80,32 @@ class tweetImport():
                           tweet_mode          = 'extended'                                    ) 
         return(api)
 
+    def makeTweepyApi(self):
+
+        auth                  = tweepy.OAuthHandler(\
+                          consumer_key        = self.getKeyFromTxt(self.consumer_key),        \
+                          consumer_secret     = self.getKeyFromTxt(self.consumer_secret),      \
+                          )
+        auth.set_access_token( \
+                          access_token       = self.getKeyFromTxt(self.access_token),          \
+                          access_token_secret = self.getKeyFromTxt(self.access_token_secret),  )
+        
+        tweepyAPI = tweepy.API(auth , tweet_mode = 'extended')
+        return(tweepyAPI)
+
+    def make
 
     def analyzeUser(self, api, since_id):
         usertoanalyze = self.user
         print('')
         print('The since_id is: ' + str(since_id))
         print('')
-        tweets = api.GetUserTimeline(screen_name = usertoanalyze,             count  = 1000,      \
-                                          include_rts     = False,         since_id  = since_id,       \
-                                          max_id          = '', trim_user = False,    \
+        tweets = api.GetUserTimeline(screen_name = usertoanalyze,             count  = 200,      \
+                                          include_rts     = False,         since_id  = '',       \
+                                          max_id          = str(since_id),            trim_user = False,    \
                                           exclude_replies = True
                                         )
         print(tweets)
-        for dates in tweets.Created
         return tweets
     def writeTweetData(self, stringData):
 
