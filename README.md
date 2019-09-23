@@ -10,6 +10,9 @@ Output: Overall sentiment from the past month
 
 MVP: A program that can accept an account/hashtag/… and (for a given time / something) output the overall sentiment (happy or sad)
 
+## Architecture 
+
+
 ## Introduction
 This repository contains the code necessary for a simple twitter relationship query using the following libraries
 > python-twitter
