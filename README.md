@@ -1,6 +1,10 @@
 # Tweet Disco Guide
 
-## Jeremiah Sullivan, Jingyi Li. EC601 Boston University, September 2019. 
+# Jeremiah Sullivan, Jingyi Li. EC601 Boston University, September 2019. 
+## Use Cases
+Twitter accounts should present an inherently non-stationary signal. Observing changes in a particular user over time could provide insight to that users behavior over time. Perhaps this could be used to predict future behavior. 
+
+## Jeremiah Sullivan. EC601 Boston University, September 2019. 
 
 ## User stories
 Identify if the language is positive or negative
@@ -37,7 +41,6 @@ Perhaps make a make file, but for now...
 >> pip install oauth2client
 
 
-
 ## API Storage
 
 In the interest in simplicity as the author can barely keep his eyes open, all API keys shall be stored in seperate ascii text (.txt) files. 
@@ -45,3 +48,6 @@ These files will be easy to read for an external program, but *shall* be ignored
 This *shall* be ensured by appropriately building the ".gitignore" file. 
 
 Similarly, any data (initial, intermediate, or final), *should* be stored in a seperate file and similarly ignored by the ".gitignore" file.  
+
+## System Diagram 
+![](tweet_diagram.png)
