@@ -18,7 +18,7 @@ The managers of Boston University: when Boston University has some activities or
 A program that can accept an account/hashtag/… and (for a given time / something) output the overall sentiment (happy or sad)
 
 ## Architecture 
-
+tweet_diagram_1.png
 
 # Introduction
 This repository contains the code necessary for a simple twitter relationship query using the following libraries
@@ -26,7 +26,7 @@ This repository contains the code necessary for a simple twitter relationship qu
 
 - Google Vision
 
--  Google NLP
+- Google NLP
 
 ## Installation guide
 
@@ -37,6 +37,8 @@ Perhaps make a make file, but for now...
 - pip install python-twitter
 
 ## Google Vision
+
+Nothing
 
 ## Google NLP
 - pip install --upgrade google-cloud-language -> https://pypi.org/project/google-cloud-language/
