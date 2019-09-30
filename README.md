@@ -1,20 +1,23 @@
-# Tweet Disco Guide
-
 # Jeremiah Sullivan, Jingyi Li. EC601 Boston University, September 2019. 
-## Use Cases
+## Product Definition
+
+# Product Mission
 Twitter accounts should present an inherently non-stationary signal. Observing changes in a particular user over time could provide insight to that users behavior over time. Perhaps this could be used to predict future behavior. 
 
-## Jeremiah Sullivan. EC601 Boston University, September 2019. 
+# Target Users
+The managers of Boston University: when Boston University has some activities or something happened, the managers can know the comments' sentiment easily in Twitter account, it also means they can know the students' attitude for one thing that happened in Boston University. So, it can help them to manage Boston University better. Also, it could be used to predict future behavior.
 
-## User stories
-Identify if the language is positive or negative
+# User stories
+Users can use this product to identify if the comments in the Twitter are positive or negative.
 
 Input:  Comments from BU Twitter account // #boston… 
+
 Output: Overall sentiment from the past month
 
-MVP: A program that can accept an account/hashtag/… and (for a given time / something) output the overall sentiment (happy or sad)
+# MVP
+A program that can accept an account/hashtag/… and (for a given time / something) output the overall sentiment (happy or sad)
 
-## Architecture 
+# Architecture 
 
 
 ## Introduction
@@ -36,8 +39,10 @@ Perhaps make a make file, but for now...
 ## Google Vision
 
 ## Google NLP
->> pip install --upgrade google-cloud-language
+>> pip install --upgrade google-cloud-language -> https://pypi.org/project/google-cloud-language/
+>> download API key
 >> pip install --upgrade google-api-python-client
+>> export GOOGLE_APPLICATION_CREDENTIALS="/home/user/Downloads/[FILE_NAME].json"
 >> pip install oauth2client
 
 
