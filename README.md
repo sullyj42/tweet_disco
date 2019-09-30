@@ -18,7 +18,7 @@ The managers of Boston University: when Boston University has some activities or
 A program that can accept an account/hashtag/… and (for a given time / something) output the overall sentiment (happy or sad)
 
 ## Architecture 
-tweet_diagram_1.png
+https://raw.githubusercontent.com/sullyj42/tweet_disco/lijingyi/tweet_diagram_1.png
 
 # Introduction
 This repository contains the code necessary for a simple twitter relationship query using the following libraries
