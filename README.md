@@ -6,8 +6,6 @@ Twitter accounts should present an inherently non-stationary signal for a single
 
 This utility could be useful for a salesman dealing with a specific person (ie as a used car salesman I am interested if the person is becoming more stingy or more expensive).  
 
-## Jeremiah Sullivan. EC601 Boston University, September 2019. 
-
 ## User stories
 Identify if the language is positive or negative
 
